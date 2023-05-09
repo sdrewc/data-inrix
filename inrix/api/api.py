@@ -2,6 +2,7 @@ import json
 import os
 
 import requests
+import tomllib
 from tqdm import tqdm
 
 from ..path import (
@@ -10,6 +11,13 @@ from ..path import (
     data_report_filename,
     data_report_name,
 )
+
+API_LOGIN_TOML_FILEPATH = r"Q:\repos\configs-private\data-inrix-api-login.toml"
+
+
+def load_toml(toml_filepath: str):
+    with open(toml_filepath, "rb") as f:
+        return tomllib.load(f)
 
 
 def _print_json(j):

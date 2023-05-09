@@ -1,0 +1,3 @@
+# example login config file: use your INRIX login
+email = ""
+password = ""
