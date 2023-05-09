@@ -1,0 +1,4 @@
+geopandas
+ipykernel
+requests
+tqdm
