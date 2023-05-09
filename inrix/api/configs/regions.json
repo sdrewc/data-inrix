@@ -1,0 +1,30 @@
+{
+    "sf": {
+        "name": "San Francisco",
+        "stateIds": [237],
+        "countryId": 27,
+        "countyIds": [30188],
+        "postalCodes": null
+    },
+    "alameda": {
+        "name": "Alameda County",
+        "stateIds": [237],
+        "countryId": 27,
+        "countyIds": [30188],
+        "postalCodes": null
+    },
+    "marin": {
+        "name": "Marin County",
+        "stateIds": [237],
+        "countryId": 27,
+        "countyIds": [30188],
+        "postalCodes": null
+    },
+    "san_mateo": {
+        "name": "San Mateo County",
+        "stateIds": [237],
+        "countryId": 27,
+        "countyIds": [30188],
+        "postalCodes": null
+    }
+}
