@@ -1,0 +1,6 @@
+# example monthly data report config file (for download_month.py)
+map_version = "2301"
+region = "sf"  # refer to keys in regions.json
+year = 2023
+month = 3
+granularity = 1  # minutes
