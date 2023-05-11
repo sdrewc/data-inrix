@@ -63,7 +63,9 @@ def request_data(
     email: str,
 ) -> str:
     """
-    return: report_id
+    Returns
+    -------
+    report_id: str
     """
     payload = {
         "mapVersion": map_version,
@@ -124,18 +126,24 @@ def report_completed(token: str, report_id: str) -> bool:
     return status["state"] == "COMPLETED"
 
 
-def _download_file(filepath: str, url: str, chunk_size: int = 1024):
-    """
-    filepath: local filepath
-    url:
+def _download_file(filepath: str, url: str):
+    """Download file from a URL.
 
-    copied straight from the requests docs
+    Copied straight from requests docs.
+
+    Parameters
+    ----------
+    filepath : str
+        local filepath
+    url : str
+        URL of file to be downloaded
     """
+    chunk_size = 1024
     r = requests.get(url, stream=True)
     with open(filepath, "wb") as f, tqdm(
         desc=filepath,
         total=int(r.headers.get("Content-Length")),
-        unit="iB",
+        unit="iB",  # since chunk_size = 1024
         unit_scale=True,
         unit_divisor=chunk_size,
     ) as pbar:
@@ -153,7 +161,21 @@ def download_data(
     date_start: str,
     date_end: str,
     granularity: str,
+    from_part: int = 1,
 ) -> None:
+    """
+    Parameters
+    ----------
+    token : str
+    report_id : str
+    map_version : str
+    region : str
+    date_start : str
+    date_end : str
+    granularity : str
+    from_part : int, optional
+        skip downloads before this part number (1-indexed), by default 1
+    """
     month_dirpath = _date_start_to_month_dirpath(map_version, date_start)
     os.makedirs(month_dirpath, exist_ok=True)
     r = requests.get(
@@ -162,7 +184,7 @@ def download_data(
     )
     _print_json(r.json())
     urls = r.json()["urls"]
-    for part, url in enumerate(urls, start=1):
+    for part, url in enumerate(urls[(from_part - 1) :], start=from_part):
         print(f"Downloading part {part} of {len(urls)}...")
         filepath = os.path.join(
             month_dirpath,
