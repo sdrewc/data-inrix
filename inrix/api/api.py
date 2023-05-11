@@ -1,5 +1,6 @@
 import json
 import os
+from importlib.resources import files
 
 import requests
 import tomllib
@@ -13,6 +14,7 @@ from ..path import (
 )
 
 API_LOGIN_TOML_FILEPATH = r"Q:\repos\configs-private\data-inrix-api-login.toml"
+REGIONS_JSON_PKGPATH = ("inrix.api", "configs/regions.json")
 
 
 def load_toml(toml_filepath: str):
@@ -49,8 +51,11 @@ def _load_region(
     """
     name: set in config["data"]["region"], references the keys in regions.json
     """
-    with open(regions_json_filepath) as f:
-        return json.load(f)[name]
+    return json.loads(
+        files(REGIONS_JSON_PKGPATH[0])
+        .joinpath(REGIONS_JSON_PKGPATH[1])
+        .read_text()
+    )[name]
 
 
 def request_data(
