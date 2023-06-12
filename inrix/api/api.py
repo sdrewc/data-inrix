@@ -13,7 +13,7 @@ from ..path import (
     data_report_name,
 )
 
-API_LOGIN_TOML_FILEPATH = r"Q:\repos\configs-private\data-inrix-api-login.toml"
+API_LOGIN_TOML_FILEPATH = r"Q:\repos\configs\private\data-inrix-api-login.toml"
 REGIONS_JSON_PKGPATH = ("inrix.api", "configs/regions.json")
 
 
@@ -35,8 +35,8 @@ def get_token(email: str, password: str) -> str:
     r = requests.post(
         "https://roadway-analytics-api.inrix.com/v1/auth", json=payload
     )
+    _print_json(r.json())
     token_dict = r.json()["result"]["accessToken"]
-    _print_json(token_dict)
     # print("API token expiry:", token_dict["expiry"])
     return token_dict["token"]
 
