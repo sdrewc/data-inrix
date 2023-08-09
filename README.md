@@ -19,3 +19,11 @@ pip install -e path/to/data-inrix
 
 ## Gotchas
 - the end date encoded in the downloaded data (zip filenames and reportContents.json) refer to the next day, not the actual end date, e.g. an actual end date of `2023-03-31` will show up as `2023-04-01` in the filenames and reportContents.json. The API scripts modify the filenames accordingly to conform to this INRIX standard.
+
+## Web interface
+### Downloading data for a small geography
+Aug 2023, email communications with INRIX:
+
+'the smallest region for study selection in Roadway Analytics is the County Level. You are, however, able to upload up to 1000 XD segment ids to create a study area. If you have the list of XD segments for a neighborhood, you can upload them in the map box tool.
+
+An easy way of identifying the XD segments is to join the shapefile below with the shapefile of the neighborhood of interest. The resulting joined layer will have the XDSegIDs for just that neighborhood which can then be uploaded to Roadway Analytics after converting to a comma separated list.'
