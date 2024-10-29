@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="inrix",
-    packages=["inrix"],
-    version="0.0",
+    packages=["inrix", "inrix.api", "inrix.stats"],
+    version="0.beta1",
     description="Scripts for analyzing INRIX IQ Roadway Analytics data",
 )
