@@ -1,0 +1,61 @@
+# example data report config file
+[input]
+directory = "Q:\\Data\\Observed\\Streets\\INRIX\\v2402"
+prefix = "All_SF"
+resolution = 1 # minutes
+save_extracted = true
+
+# xref is for aggregating inrix segments.  The file should have two columns, identified in the fields:
+#    1) `xref_join` which names the column that joins to `seg_id` in the inrix data.
+#    2) `xref_id` which names the id column.  
+xref = "Q:\\CMP\\LOS Monitoring 2021\\inrix_cmp_corr.csv"
+xref_join = 'xd_id'
+xref_id = 'cmp_segid'
+
+[output]
+directory = "Q:\\Model Projects\\101_280\\data\\inrix\\test"
+prefix = "test_"
+resolution = 60 # minutes, OR "CHAMP"
+time_bin_var = 'time_bin'
+filter_typical_weekday = true
+c_value = 50
+filter_c_value = true
+date_range_var = 'date_range'
+timezone = "US/Pacific"
+buffer_time_quantile = 95
+
+# dates can be a tuple (start_date, end_date) or a dict of {name: (start_date, end_date)}
+[dates]
+spring = ["2023-04-01", "2023-04-30"]
+# fall = ["2023-09-16", "2023-11-15"]
+
+[resolutions]
+
+[resolutions.1]
+name = "30min"
+resolution = 30
+
+[resolutions.2]
+name = "champ"
+resolution = "champ"
+
+[resolutions.3]
+name = "60min"
+resolution = 60
+
+[aggregations]
+
+#[aggregations.season]
+#groupby = [ 'cmp_id', 'season_year', 'season', 'day_of_week', 'is_holiday', 'is_midweek', 'hour' ]
+
+#[aggregations.dow]
+#groupby = ['cmp_id','year','month','day_of_week','is_holiday','is_midweek','hour']
+
+[aggregations.typical_weekday_30min]
+groupby = [ 'cmp_segid', '30min' ]
+
+[aggregations.typical_weekday_60min]
+groupby = [ 'cmp_segid', '60min' ]
+
+[aggregations.typical_weekday_champ]
+groupby = [ 'cmp_segid', 'champ' ]
