@@ -8,13 +8,13 @@ import tomllib
 #    from inrix.stats import add_datetime_fields, is_date_range_overlap, get_files_by_date_range, read_inrix_file, merge_segments, apply_resolution, aggregate
 #except:
 sys.path.insert(0, r'Y:\sdc\data-inrix\inrix\stats')
-from stats import (add_datetime_fields, 
-                   is_date_range_overlap, 
-                   get_files_by_date_range, 
-                   read_inrix_file, 
-                   merge_segments, 
-                   apply_resolution, 
-                   aggregate)
+from agg import (add_datetime_fields, 
+                 is_date_range_overlap, 
+                 get_files_by_date_range, 
+                 read_inrix_file, 
+                 merge_segments, 
+                 apply_resolution, 
+                 aggregate)
 
 if __name__ == '__main__':
     # load the config file
